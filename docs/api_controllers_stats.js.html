@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: api/controllers/stats.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: api/controllers/stats.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import playerStats from "../../services/playerStats.js";
+import CError from "../../scripts/CError.js";
+
+/**
+ * Controller to handle requests for retrieving and formatting player statistics based on specific filters.
+ * Utilizes the `playerStats` service to fetch statistics for a specified player within a given team type,
+ * competition scope, and competition format.
+ * The resulting data includes detailed statistics such as games played,
+ * minutes, goals, assists, and calculates goals per 90 minutes for each season. 
+ * 
+ * Errors during the retrieval or processing phase are managed by forwarding a custom error to the next error handling middleware.
+ *
+ * @memberof module:Controller
+ * @async
+ * @function statsController
+ * 
+ * @see {@link module:Services.playerStats} - The service used for retrieving player statistics.
+ * 
+ * @param {Object} req - The Express request object, containing query parameters for player, team, scope, and competition.
+ * @param {Object} res - The Express response object used to send the formatted statistics back to the client.
+ * @param {Object} next - The next middleware function in the Express stack, utilized here for error handling.
+ * 
+ * @example
+ * Example response sent to client:
+ * {
+ *   "StatsSummary": {
+ *     "Seasons": "21 Seasons",
+ *     "Teams": "4 clubs",
+ *     "Competitions": "4 Competitions",
+ *     "Games": "647",
+ *     "Minutes": "51809",
+ *     "Goals": "497",
+ *     "Assists": "138",
+ *     "Goals/90": "0.86"
+ *   },
+ *   "Stats": [
+ *     {
+ *       "Seasons": "2002-2003",
+ *       "Age": 17,
+ *       // Additional details for each season...
+ *     },
+ *     // ...
+ *   ]
+ * }
+ * 
+ * @throws {CError} - Custom error with a 500 status code if fetching or formatting stats information fails.
+ * 
+ */
+const statsController = async (req,res,next) => {
+
+  try{
+    let player = String(req.query.player || "ronaldo")
+    let team = String(req.query.team || "club")
+    let scope = String(req.query.scope || "domestic")
+    let competition = String(req.query.competition || "league")
+
+    const stats = await playerStats(player,team,scope,competition);
+
+    const refinedStats = stats.map(stat => {
+      const seasonStartYear = parseInt(stat.season.split('-')[0]); 
+      const playerBirthYear = new Date(stat.Person.birth_date).getFullYear();
+      const playerAgeAtSeasonStart = seasonStartYear - playerBirthYear;
+      const goalsPer90 = parseFloat(((stat.goals / stat.minutes) * 90).toFixed(2));
+      const assists = isNaN(stat.assists) ? 0 : Number(stat.assists)
+
+      return {
+        "Seasons" : stat.season,
+        "Age" : playerAgeAtSeasonStart,
+        "Teams" : stat.Team.name,
+        "Country" : stat.Team.country,
+        "Competitions" : stat.Competition.name,
+        "Games" : stat.games,
+        "Minutes" : stat.minutes,
+        "Goals" : stat.goals,
+        "Assists" : assists,
+        "Goals/90" : goalsPer90
+      };
+    });
+
+    //Since the dataset is small, performing the calculations in the server.
+    const seasons = new Set();
+    const teams = new Set();
+    const competitions = new Set();
+    let totalMinutes = 0, totalGames = 0, totalGoals = 0, totalAssists = 0;
+
+    refinedStats.forEach(stat => {
+      seasons.add(stat.Seasons);
+      teams.add(stat.Teams);
+      competitions.add(stat.Competitions);
+      totalMinutes += stat.Minutes;
+      totalGames += stat.Games;
+      totalGoals += stat.Goals;
+      totalAssists += stat.Assists;
+    });
+
+    const averageGoalsPer90 = totalMinutes > 0 ? parseFloat(((totalGoals / totalMinutes) * 90).toFixed(2)) : 0;
+    const playerStatsSummary = {
+      "Seasons" : `${seasons.size} Seasons`,
+      "Teams" : `${teams.size} ${team}`,
+      "Competitions" : `${competitions.size} Competitions`,
+      "Games" : `${totalGames}`,
+      "Minutes" : `${totalMinutes}`,
+      "Goals" : `${totalGoals}`,
+      "Assists" : `${totalAssists}`,
+      "Goals/90" : `${averageGoalsPer90}`,
+    }
+    
+    const statsCollection = {
+      "StatsSummary" : playerStatsSummary,
+      "Stats" : refinedStats
+    }
+
+    res.send(statsCollection);
+  } catch(error){
+    next(new CError(500, "Failed to retrieve player stats information."));
+  }
+}
+
+export default statsController;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Controller.html">Controller</a></li><li><a href="module-DataConversionFactory.html">DataConversionFactory</a></li><li><a href="module-Database.html">Database</a></li><li><a href="module-DatabaseSeed.html">DatabaseSeed</a></li><li><a href="module-Middlewares.html">Middlewares</a></li><li><a href="module-Models.html">Models</a></li><li><a href="module-Relationships.html">Relationships</a></li><li><a href="module-Router.html">Router</a></li><li><a href="module-Routes.html">Routes</a></li><li><a href="module-Server.html">Server</a></li><li><a href="module-Services.html">Services</a></li></ul><h3>Classes</h3><ul><li><a href="CError.html">CError</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Apr 05 2024 02:31:44 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

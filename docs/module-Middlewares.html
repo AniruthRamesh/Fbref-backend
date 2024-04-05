@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Module: Middlewares</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Module: Middlewares</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>This module comprises various middleware functions designed to enhance and manage the HTTP request-response lifecycle within the Express application. Middleware functions are integral to handling common tasks such as request logging, authentication, validation, and error handling. Currently, this module primarily focuses on error handling.</p>
+<p>As the application evolves, additional middlewares may be added to address new requirements or improve existing functionality.</p></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="middlewares_middlewares.js.html">middlewares/middlewares.js</a>, <a href="middlewares_middlewares.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="module-Middlewares.html#.errorHandler"><code>module:Middlewares.errorHandler</code></a> to see how we are handling errors in our application.</li>
+        
+            <li><a href="https://expressjs.com/en/guide/using-middleware.html">https://expressjs.com/en/guide/using-middleware.html</a> for more details on middleware in Express.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+        
+            <h3>Example</h3>
+            
+    <pre class="prettyprint"><code>// Using errorHandler middleware in an Express application
+const express = require('express');
+const { errorHandler } = require('./middlewares');
+
+const app = express();
+
+// Other middleware and routes go here
+
+// Error handling middleware should be the last piece of middleware added to the app
+app.use(errorHandler);</code></pre>
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".errorHandler"><span class="type-signature">(static) </span>errorHandler<span class="signature">(err, req, res, next)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Error handling middleware for Express. Logs error stack, sends JSON response with status code
+and error message. Defaults to 500/Internal Server Error if not specified by the error.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>err</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Error</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The error object that was thrown.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The Express request object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The Express response object. This method sets the response
+status code and sends a JSON object containing the error details.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>next</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The Express next middleware function in the stack. Not
+used in this function, but required by Express for error handling middleware.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="middlewares_errorHandler.js.html">middlewares/errorHandler.js</a>, <a href="middlewares_errorHandler.js.html#line2">line 2</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Controller.html">Controller</a></li><li><a href="module-DataConversionFactory.html">DataConversionFactory</a></li><li><a href="module-Database.html">Database</a></li><li><a href="module-DatabaseSeed.html">DatabaseSeed</a></li><li><a href="module-Middlewares.html">Middlewares</a></li><li><a href="module-Models.html">Models</a></li><li><a href="module-Relationships.html">Relationships</a></li><li><a href="module-Router.html">Router</a></li><li><a href="module-Routes.html">Routes</a></li><li><a href="module-Server.html">Server</a></li><li><a href="module-Services.html">Services</a></li></ul><h3>Classes</h3><ul><li><a href="CError.html">CError</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Apr 05 2024 02:31:44 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

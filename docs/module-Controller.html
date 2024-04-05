@@ -1,0 +1,1122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Module: Controller</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Module: Controller</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>This module contains all the controllers used in the application. Controllers are responsible for handling incoming requests,
+executing the appropriate logic, and sending back the responses to the client. They act as an intermediary between the models,
+which interact with the database, and the views, which present the data to the user.</p>
+<p>Controllers utilize services to perform operations on the data fetched from or to be stored in the database. They also handle
+any errors that occur during the processing of requests and delegate error handling to middleware where necessary.</p>
+<p>Each controller is designed to manage requests for a specific area of the application, such as players, teams, competitions,
+or player statistics. This modular approach allows for clear separation of concerns and makes the application easier to manage and scale.</p></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_controllers_controller.js.html">api/controllers/controller.js</a>, <a href="api_controllers_controller.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="module-Services.html"><code>module:Services</code></a> for services utilized by the controller.</li>
+        
+            <li><a href="module-Controller.html#.playerController"><code>module:Controller.playerController</code></a> for handling player information requests.</li>
+        
+            <li><a href="module-Controller.html#.teamsController"><code>module:Controller.teamsController</code></a> for handling team information requests.</li>
+        
+            <li><a href="module-Controller.html#.competitionController"><code>module:Controller.competitionController</code></a> for handling competition information requests.</li>
+        
+            <li><a href="module-Controller.html#.statsController"><code>module:Controller.statsController</code></a> for handling player statistics requests.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".competitionController"><span class="type-signature">(async, static) </span>competitionController<span class="signature">(req, res, next)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Controller for fetching and format information about all competitions.
+It transforms the raw competition data into a more readable format for the response.</p>
+<p>Any errors encountered during data retrieval or processing are forwarded to the next error handling middleware with a custom error message.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Represents Express request.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Represents Express response.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>next</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The next middleware function in the stack, used for error handling. Represents Express NextFunction.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_controllers_competition.js.html">api/controllers/competition.js</a>, <a href="api_controllers_competition.js.html#line5">line 5</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="module-Services.html#.CompetitionInfo"><code>module:Services.CompetitionInfo</code></a> - The service used for retrieving Competition data.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        <ul>
+<li>Custom error with status 500 if retrieving competition information fails.</li>
+</ul>
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type"><a href="CError.html">CError</a></span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>Expected response sent to client
+res.send([
+  { "Competition": "World Cup", "Team Type": "Natl Team", "Scope": "International", "Format": "Cup", "Country": "N/A" },
+  { "Competition": "UEFA Champions League", "Team Type": "Club", "Scope": "International", "Format": "Cup", "Country": "N/A" },
+  ...
+]);</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".playerController"><span class="type-signature">(async, static) </span>playerController<span class="signature">(req, res, next)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Controller for fetching and formatting player information from the database.
+It utilizes the <code>PlayerInfo</code> service to retrieve all players and then formats
+each player's information, including converting the <code>birth_date</code> to a more
+readable format.</p>
+<p>Any errors encountered during the retrieval or formatting process are handled by forwarding a custom error object to the next middleware.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The Express request object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The Express response object. This is used to send the formatted list of players back to the client.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>next</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The next middleware in the Express stack, used for error handling.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_controllers_players.js.html">api/controllers/players.js</a>, <a href="api_controllers_players.js.html#line5">line 5</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="module-Services.html#.PlayerInfo"><code>module:Services.PlayerInfo</code></a> - The service used for retrieving player data.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        <ul>
+<li>Custom error with a 500 status code if fetching or formatting player information fails.</li>
+</ul>
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type"><a href="CError.html">CError</a></span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>Example response sent to client:
+[
+  {
+    "Player Name": "Lionel Messi",
+    "Date of Birth": "June 23, 1987"
+  },
+  {
+    "Player Name": "Cristiano Ronaldo",
+    "Date of Birth": "February 4, 1985"
+  },
+  ....
+]</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".statsController"><span class="type-signature">(async, static) </span>statsController<span class="signature">(req, res, next)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Controller to handle requests for retrieving and formatting player statistics based on specific filters.
+Utilizes the <code>playerStats</code> service to fetch statistics for a specified player within a given team type,
+competition scope, and competition format.
+The resulting data includes detailed statistics such as games played,
+minutes, goals, assists, and calculates goals per 90 minutes for each season.</p>
+<p>Errors during the retrieval or processing phase are managed by forwarding a custom error to the next error handling middleware.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The Express request object, containing query parameters for player, team, scope, and competition.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The Express response object used to send the formatted statistics back to the client.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>next</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The next middleware function in the Express stack, utilized here for error handling.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_controllers_stats.js.html">api/controllers/stats.js</a>, <a href="api_controllers_stats.js.html#line4">line 4</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="module-Services.html#.playerStats"><code>module:Services.playerStats</code></a> - The service used for retrieving player statistics.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        <ul>
+<li>Custom error with a 500 status code if fetching or formatting stats information fails.</li>
+</ul>
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type"><a href="CError.html">CError</a></span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>Example response sent to client:
+{
+  "StatsSummary": {
+    "Seasons": "21 Seasons",
+    "Teams": "4 clubs",
+    "Competitions": "4 Competitions",
+    "Games": "647",
+    "Minutes": "51809",
+    "Goals": "497",
+    "Assists": "138",
+    "Goals/90": "0.86"
+  },
+  "Stats": [
+    {
+      "Seasons": "2002-2003",
+      "Age": 17,
+      // Additional details for each season...
+    },
+    // ...
+  ]
+}</code></pre>
+
+
+
+        
+            
+
+    
+
+    
+    <h4 class="name" id=".teamsController"><span class="type-signature">(async, static) </span>teamsController<span class="signature">(req, res, next)</span><span class="type-signature"></span></h4>
+    
+
+    
+
+
+
+<div class="description">
+    <p>Controller function to handle requests for retrieving and formatting information
+about all teams. It leverages the <code>TeamInfo</code> service to fetch teams from the database
+and formats the data before sending it as a response.
+The team type (e.g., 'club', 'national team') is formatted for readability.</p>
+<p>Errors during data retrieval or processing are caught and handled by passing a custom error object to the next error handling middleware.</p>
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>req</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The Express request object.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>res</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The Express response object used to send the formatted team data back to the client.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>next</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The next middleware function in the Express stack, used here for error handling.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="api_controllers_teams.js.html">api/controllers/teams.js</a>, <a href="api_controllers_teams.js.html#line5">line 5</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="module-Services.html#.TeamInfo"><code>module:Services.TeamInfo</code></a> - The service used for retrieving team data.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Throws:</h5>
+
+        
+
+<dl>
+    <dt>
+        <div class="param-desc">
+        <ul>
+<li>Custom error with a status code of 500 if an error occurs while retrieving or formatting team information.</li>
+</ul>
+        </div>
+    </dt>
+    <dd></dd>
+    <dt>
+        <dl>
+            <dt>
+                Type
+            </dt>
+            <dd>
+                
+<span class="param-type"><a href="CError.html">CError</a></span>
+
+
+            </dd>
+        </dl>
+    </dt>
+    <dd></dd>
+</dl>
+
+
+    
+
+
+
+
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>Example response sent to client:
+[
+  {
+    "Team Name": "Sporting CP",
+    "Team Country": "Portugal",
+    "Team Type": "Club"
+  },
+  {
+    "Team Name": "Real Madrid",
+    "Team Country": "Spain",
+    "Team Type": "Club"
+  },
+  ...
+]</code></pre>
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Controller.html">Controller</a></li><li><a href="module-DataConversionFactory.html">DataConversionFactory</a></li><li><a href="module-Database.html">Database</a></li><li><a href="module-DatabaseSeed.html">DatabaseSeed</a></li><li><a href="module-Middlewares.html">Middlewares</a></li><li><a href="module-Models.html">Models</a></li><li><a href="module-Relationships.html">Relationships</a></li><li><a href="module-Router.html">Router</a></li><li><a href="module-Routes.html">Routes</a></li><li><a href="module-Server.html">Server</a></li><li><a href="module-Services.html">Services</a></li></ul><h3>Classes</h3><ul><li><a href="CError.html">CError</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Apr 05 2024 02:31:44 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

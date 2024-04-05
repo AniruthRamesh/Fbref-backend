@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Module: Models</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Module: Models</h1>
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>This module encapsulates the data models of the application, defining the structure and relationships of the data stored in the database. It utilizes Sequelize, an ORM for Node.js, for model definitions and database interactions.
+Each model represents a table in the database and is defined with specific attributes that map to the columns of the table.</p>
+<p>The models included in this module are:</p>
+<ul>
+<li><a href="module-Models.html#.Person"><code>module:Models.Person</code></a> for individuals participating in or related to the competitions.</li>
+<li><a href="module-Models.html#.Team"><code>module:Models.Team</code></a> for teams participating in competitions.</li>
+<li><a href="module-Models.html#.Competition"><code>module:Models.Competition</code></a> for the various competitions in which teams and individuals participate.</li>
+<li><a href="module-Models.html#.Stats"><code>module:Models.Stats</code></a> for the statistical data associated with individuals' performances in competitions.</li>
+</ul>
+<p>Besides defining the structure of each table, this module also establishes relationships between the models to reflect the associations and dependencies that exist among the different entities in the application domain.</p>
+<p>The relationships defined here are:</p>
+<ul>
+<li>A <code>Competition</code> can have many <code>Stats</code>, and each <code>Stat</code> entry belongs to a single <code>Competition</code>.</li>
+<li>A <code>Team</code> can have many <code>Stats</code>, and each <code>Stat</code> entry belongs to a single <code>Team</code>.</li>
+<li>A <code>Person</code> can have many <code>Stats</code>, and each <code>Stat</code> entry is associated with a single <code>Person</code>.</li>
+</ul>
+<p>These relationships are crucial for querying related data efficiently and maintaining the integrity of the database. <a href="module-Relationships.html"><code>module:Relationships</code></a></p></div>
+        
+
+        
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_models.js.html">models/models.js</a>, <a href="models_models.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="module-Models.html#.Team"><code>module:Models.Team</code></a> for the Team model definition.</li>
+        
+            <li><a href="module-Models.html#.Stats"><code>module:Models.Stats</code></a> for the Stats model definition.</li>
+        
+            <li><a href="module-Models.html#.Person"><code>module:Models.Person</code></a> for the Person model definition.</li>
+        
+            <li><a href="module-Models.html#.Competition"><code>module:Models.Competition</code></a> for the Competition model definition.</li>
+        
+            <li><a href="module-Database.html"><code>module:Database</code></a> for the Sequelize database instance configuration.</li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Type Definitions</h3>
+
+        
+                
+<h4 class="name" id=".Competition">Competition</h4>
+
+
+
+
+<div class="description">
+    <p>Defines the Competition model schema with Sequelize.
+Represents competitions in the database, detailing their
+specific attributes and constraints.</p>
+<p>The model is defined with attributes: <code>comp_id</code>, <code>name</code>, <code>team_type</code>,
+<code>scope</code>, <code>competition_format</code>, and <code>country</code>. <code>comp_id</code> is used as the
+primary key. The <code>country</code> attribute is optional (<code>allowNull: true</code>),
+while all other attributes are required.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>comp_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The primary key and unique identifier for the competition.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The name of the competition.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>team_type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Indicates the type of team (e.g., club, national team).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>scope</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Defines the scope of the competition (e.g., domestic, international).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>competition_format</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Specifies the format of the competition (e.g., league, cup).</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>country</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Alias for this is Venue, The country associated with the competition. This field can be null.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_Competition.js.html">models/Competition.js</a>, <a href="models_Competition.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+            
+                
+<h4 class="name" id=".Person">Person</h4>
+
+
+
+
+<div class="description">
+    <p>Defines the Person model schema using Sequelize. This model represents
+individuals in the database, detailing attributes like <code>person_id</code>, <code>name</code>,
+and <code>birth_date</code>. The <code>person_id</code> serves as the unique identifier and primary key.
+Both <code>name</code> and <code>birth_date</code> are required fields.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>person_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Unique identifier and primary key for the person.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Name of the person.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>birth_date</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Date</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Birth date of the person.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_Person.js.html">models/Person.js</a>, <a href="models_Person.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+            
+                
+<h4 class="name" id=".Stats">Stats</h4>
+
+
+
+
+<div class="description">
+    <p>Defines the Stats model schema with Sequelize. This model represents
+statistical data for individuals, including attributes such as games played,
+minutes played, goals, and assists, among others. The <code>stat_id</code> serves as the
+unique identifier and primary key and is auto-incremented.</p>
+<p>Relationships should be defined externally to link <code>Stats</code> with corresponding
+<code>Person</code>, <code>Competition</code>, and <code>Team</code> entities based on <code>person_id</code>, <code>comp_id</code>, and
+<code>team_id</code> respectively.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+        <th>Attributes</th>
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>stat_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Unique identifier and primary key, auto-incremented.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>person_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Identifier linking to a <code>Person</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>season</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>The season during which the statistics were recorded.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>comp_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Identifier linking to a <code>Competition</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>team_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Identifier linking to a <code>Team</code>.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>games</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Number of games played.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>minutes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Total minutes played.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>goals</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Total goals scored.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>assists</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+            
+            </td>
+
+            
+                <td class="attributes">
+                
+                    &lt;optional><br>
+                
+
+                
+                </td>
+            
+
+            
+
+            <td class="description last"><p>Total assists made. This field can be null.</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_Stat.js.html">models/Stat.js</a>, <a href="models_Stat.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+            
+                
+<h4 class="name" id=".Team">Team</h4>
+
+
+
+
+<div class="description">
+    <p>Defines the Team model schema using Sequelize. This model encapsulates data for sports teams,
+including their ID, name, country, and team type. The <code>team_id</code> acts as a unique identifier and
+is marked as the primary key.</p>
+</div>
+
+
+
+    <h5>Type:</h5>
+    <ul>
+        <li>
+            
+<span class="param-type">Object</span>
+
+
+        </li>
+    </ul>
+
+
+
+
+
+    <h5 class="subsection-title">Properties:</h5>
+
+    
+
+<table class="props">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>team_id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>Unique identifier for the team, serving as the primary key.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The name of the team.</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>country</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The country the team represents or is located in. Alias - Team Country</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>team_type</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>The type of team (e.g., club, national team).</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="models_Team.js.html">models/Team.js</a>, <a href="models_Team.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+            
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Controller.html">Controller</a></li><li><a href="module-DataConversionFactory.html">DataConversionFactory</a></li><li><a href="module-Database.html">Database</a></li><li><a href="module-DatabaseSeed.html">DatabaseSeed</a></li><li><a href="module-Middlewares.html">Middlewares</a></li><li><a href="module-Models.html">Models</a></li><li><a href="module-Relationships.html">Relationships</a></li><li><a href="module-Router.html">Router</a></li><li><a href="module-Routes.html">Routes</a></li><li><a href="module-Server.html">Server</a></li><li><a href="module-Services.html">Services</a></li></ul><h3>Classes</h3><ul><li><a href="CError.html">CError</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 4.0.2</a> on Fri Apr 05 2024 02:31:44 GMT-0400 (Eastern Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
